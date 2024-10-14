@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Document</title>
+    <style>
+        /* Tambahkan gaya CSS di sini jika diperlukan */
+        th {
+            cursor: pointer; /* Menunjukkan bahwa header kolom bisa diklik */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar" id="navbar">
+            <div class="navdiv">
+                <div class="logo"><a href="#"><img src="img/Untitled (1)-1.png" alt="logo"></a></div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">Hospitals</a></li>
+                    <li><a href="Map.html">Map</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <content>
+        <div class="background">
+            <img class="BG-img" src="img/WhatsApp Image 2024-09-28 at 13.02.02_3222d11a.jpg" alt="backgroundIMG">
+            <h1>BANDUNG HOSPITALS</h1>
+            <p>Kenalan lebih dekat dengan rumah sakit yang ada di Bandung.</p>
+            <div class="flex-box-container">
+                <div class="boxx" style="height: 200px; width: 255px;">
+                    <div class="box-img"><img alt="doctor team" loading="lazy" decoding="async" data-nimg="fill" sizes="min-width: 50px" src="img/RS Hasan Sadikin.webp" class="style-img" /></div>
+                    <div class="color-box">
+                        <a href="/teams/1" class="text-box">RUMAH SAKIT <a class="text-box">TIPE A</a></a>
+                    </div>
+                </div>
+                <div class="boxx" style="height: 200px; width: 255px;">
+                    <div class="box-img"><img alt="doctor team" loading="lazy" decoding="async" data-nimg="fill" sizes="min-width: 50px" src="img/RS MAYAPADA.jpeg" class="style-img" /></div>
+                    <div class="color-box">
+                        <a href="/teams/1" class="text-box">RUMAH SAKIT <a class="text-box">TIPE B</a></a>
+                    </div>
+                </div>
+                <div class="boxx" style="height: 200px; width: 255px;">
+                    <div class="box-img"><img alt="doctor team" loading="lazy" decoding="async" data-nimg="fill" sizes="min-width: 50px" src="img/Rsotomo.jpg" class="style-img" /></div>
+                    <div class="color-box">
+                        <a href="/teams/1" class="text-box">RUMAH SAKIT <a class="text-box">TIPE C</a></a>
+                    </div>
+                </div>
+                <div class="boxx" style="height: 200px; width: 255px;">
+                    <div class="box-img"><img alt="doctor team" loading="lazy" decoding="async" data-nimg="fill" sizes="min-width: 50px" src="img/RS sari ningsi.jpg" class="style-img" /></div>
+                    <div class="color-box">
+                        <a href="/teams/1" class="text-box">RUMAH SAKIT <a class="text-box">TIPE D</a></a>
+                    </div>
+                </div>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cari data berdasarkan nama..." oninput="searchTable()">
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">No</th>
+                        <th onclick="sortTable(1)">Nama Rumah Sakit</th>
+                        <th onclick="sortTable(2)">Tipe</th>
+                        <th onclick="sortTable(3)">Kapasitas</th>
+                        <th onclick="sortTable(4)">Alamat</th>
+                        <th onclick="sortTable(5)">Nomor Telepon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </content>
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-column1">
+                    <h3><strong>Contact Us</strong></h3>
+                    <p>mbclab1234@gmail.com</p>
+                </div>
+                <div class="footer-column2">
+                    <h3><strong>About Us</strong></h3>
+                    <p><a href="Profile.html">Our Profile</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <a href="https://www.instagram.com/mbclab/?hl=en" class="footer-social"><i class="fab fa-instagram"></i></a>
+                <span class="copyright">&copy;2024 MBC Lab - Telkom University. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 0) {
+                navbar.classList.add('scrolled'); // Tambahkan kelas saat di-scroll
+            } else {
+                navbar.classList.remove('scrolled'); // Hapus kelas saat di atas
+            }
+        });
+
+        function searchTable() {
+            // Ambil nilai input dari kotak pencarian
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            
+            // Ambil tabel dan tbody-nya
+            const table = document.querySelector('.data-table');
+            const tbody = table.querySelector('tbody');
+            
+            // Ambil semua baris dari tbody
+            const rows = tbody.getElementsByTagName('tr');
+            
+            // Loop melalui semua baris tabel
+            for (let i = 0; i < rows.length; i++) {
+                // Ambil kolom nama (kolom kedua)
+                const nameCell = rows[i].getElementsByTagName('td')[1]; // Kolom kedua untuk nama
+                
+                if (nameCell) {
+                    // Jika teks di dalam kolom nama cocok dengan input pencarian
+                    if (nameCell.innerHTML.toLowerCase().indexOf(filter) > -1) {
+                        rows[i].style.display = ''; // Tampilkan baris jika ada kecocokan
+                    } else {
+                        rows[i].style.display = 'none'; // Sembunyikan baris jika tidak cocok
+                    }
+                }
+            }
+        }
+
+        async function fetchHospitalData() {
+            try {
+                // Fetch data dari API
+                const response = await fetch('http://localhost:5000/users');
+                const hospitals = await response.json();
+
+                // Ambil elemen tbody dari tabel
+                const tableBody = document.querySelector('.data-table tbody');
+
+                // Kosongkan isi tabel sebelum menambahkan data baru
+                tableBody.innerHTML = '';
+
+                // Loop melalui data rumah sakit dan tambahkan baris ke tabel
+                hospitals.forEach((user, id) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${id + 1}</td>
+                        <td>${user.Nama}</td>
+                        <td>${user.Kelas}</td>
+                        <td>${user.Kapasitas}</td>
+                        <td>${user.Alamat}</td>
+                        <td>${user.Telepon}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching hospital data:', error);
+            }
+        }
+
+        function sortTable(columnIndex) {
+            const table = document.querySelector('.data-table');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            // Cek arah sorting
+            const isAscending = tbody.getAttribute('data-order') === 'asc';
+
+            // Sortir baris berdasarkan kolom yang dipilih
+            rows.sort((a, b) => {
+                const aText = a.children[columnIndex].textContent.trim();
+                const bText = b.children[columnIndex].textContent.trim();
+
+                if (isNaN(aText) || isNaN(bText)) {
+                    return aText.localeCompare(bText, undefined, { numeric: true });
+                } else {
+                    return parseFloat(aText) - parseFloat(bText);
+                }
+            });
+
+            // Balik urutan jika sudah terurut
+            if (isAscending) {
+                rows.reverse();
+                tbody.setAttribute('data-order', 'desc');
+            } else {
+                tbody.setAttribute('data-order', 'asc');
+            }
+
+            // Tambahkan baris yang sudah di-sort ke tbody
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        window.onload = fetchHospitalData;
+    </script>
+</body>
+</html>
